@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Diabetes-Superfoods-min" translatesAutoresizingMaskIntoConstraints="NO" id="4Dc-lG-7lV">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="-20" translatesAutoresizingMaskIntoConstraints="NO" id="NMQ-yJ-D6O">
+                                <rect key="frame" x="56.5" y="281" width="301.5" height="334"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-1024" translatesAutoresizingMaskIntoConstraints="NO" id="tno-zZ-904">
+                                        <rect key="frame" x="25" y="0.0" width="251" height="250"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="250" id="0dI-O5-4gX"/>
+                                            <constraint firstAttribute="width" secondItem="tno-zZ-904" secondAttribute="height" constant="1" id="Gtr-7H-Gbj"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reciplease" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="30" translatesAutoresizingMaskIntoConstraints="NO" id="Htz-Qf-bff">
+                                        <rect key="frame" x="0.0" y="230" width="301.5" height="104"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="65"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="NMQ-yJ-D6O" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="95Y-GO-sms"/>
+                            <constraint firstAttribute="bottom" secondItem="4Dc-lG-7lV" secondAttribute="bottom" id="Fzs-C7-oP7"/>
+                            <constraint firstItem="NMQ-yJ-D6O" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="G2R-4A-L5u"/>
+                            <constraint firstItem="4Dc-lG-7lV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UXP-2P-vla"/>
+                            <constraint firstItem="4Dc-lG-7lV" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="seP-3Y-oQD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4Dc-lG-7lV" secondAttribute="trailing" id="zpm-hi-ago"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Diabetes-Superfoods-min" width="900" height="798"/>
+        <image name="Icon-1024" width="1024" height="1024"/>
+    </resources>
+</document>
