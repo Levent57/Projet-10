@@ -15,9 +15,10 @@
 		2B6406A0245B756A003F02B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B64069E245B756A003F02B8 /* LaunchScreen.storyboard */; };
 		2B6406AB245B756A003F02B8 /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6406AA245B756A003F02B8 /* RecipleaseTests.swift */; };
 		2B6406B6245B756B003F02B8 /* RecipleaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6406B5245B756B003F02B8 /* RecipleaseUITests.swift */; };
-		2BC20EA22460B95E005FEA92 /* RecipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC20EA12460B95E005FEA92 /* RecipeTableViewController.swift */; };
+		2B88C2D42462DF9E005439DD /* RecipieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B88C2D22462DF9E005439DD /* RecipieTableViewCell.swift */; };
+		2B88C2D52462DF9E005439DD /* RecipieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B88C2D32462DF9E005439DD /* RecipieTableViewCell.xib */; };
+		2BC20EA22460B95E005FEA92 /* RecipeListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC20EA12460B95E005FEA92 /* RecipeListTableViewController.swift */; };
 		2BC20EA42460B979005FEA92 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC20EA32460B979005FEA92 /* RecipeDetailViewController.swift */; };
-		2BC20EA624620DD1005FEA92 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC20EA524620DD1005FEA92 /* FavoriteTableViewCell.swift */; };
 		2BC9FD83245C54A3001E9F09 /* RecipeSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC9FD82245C54A3001E9F09 /* RecipeSession.swift */; };
 		2BC9FD85245C55AF001E9F09 /* RecipSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC9FD84245C55AF001E9F09 /* RecipSearch.swift */; };
 		2BC9FD87245C5FF6001E9F09 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC9FD86245C5FF5001E9F09 /* RecipeService.swift */; };
@@ -64,9 +65,10 @@
 		2B6406B1245B756B003F02B8 /* RecipleaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B6406B5245B756B003F02B8 /* RecipleaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseUITests.swift; sourceTree = "<group>"; };
 		2B6406B7245B756B003F02B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2BC20EA12460B95E005FEA92 /* RecipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewController.swift; sourceTree = "<group>"; };
+		2B88C2D22462DF9E005439DD /* RecipieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipieTableViewCell.swift; sourceTree = "<group>"; };
+		2B88C2D32462DF9E005439DD /* RecipieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipieTableViewCell.xib; sourceTree = "<group>"; };
+		2BC20EA12460B95E005FEA92 /* RecipeListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListTableViewController.swift; sourceTree = "<group>"; };
 		2BC20EA32460B979005FEA92 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
-		2BC20EA524620DD1005FEA92 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		2BC9FD82245C54A3001E9F09 /* RecipeSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSession.swift; sourceTree = "<group>"; };
 		2BC9FD84245C55AF001E9F09 /* RecipSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipSearch.swift; sourceTree = "<group>"; };
 		2BC9FD86245C5FF5001E9F09 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
@@ -184,7 +186,8 @@
 		2BC9FD80245C4FD6001E9F09 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2BC20EA524620DD1005FEA92 /* FavoriteTableViewCell.swift */,
+				2B88C2D22462DF9E005439DD /* RecipieTableViewCell.swift */,
+				2B88C2D32462DF9E005439DD /* RecipieTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -193,8 +196,8 @@
 			isa = PBXGroup;
 			children = (
 				2BC9FD8B245CE0F3001E9F09 /* SearchViewController.swift */,
+				2BC20EA12460B95E005FEA92 /* RecipeListTableViewController.swift */,
 				2BC20EA32460B979005FEA92 /* RecipeDetailViewController.swift */,
-				2BC20EA12460B95E005FEA92 /* RecipeTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B6406A0245B756A003F02B8 /* LaunchScreen.storyboard in Resources */,
+				2B88C2D52462DF9E005439DD /* RecipieTableViewCell.xib in Resources */,
 				2B64069D245B756A003F02B8 /* Assets.xcassets in Resources */,
 				2B640698245B7568003F02B8 /* Main.storyboard in Resources */,
 			);
@@ -471,13 +475,13 @@
 			files = (
 				2B64069B245B7568003F02B8 /* Reciplease.xcdatamodeld in Sources */,
 				2BC9FD87245C5FF6001E9F09 /* RecipeService.swift in Sources */,
-				2BC20EA22460B95E005FEA92 /* RecipeTableViewController.swift in Sources */,
+				2BC20EA22460B95E005FEA92 /* RecipeListTableViewController.swift in Sources */,
 				2BC9FD8C245CE0F3001E9F09 /* SearchViewController.swift in Sources */,
 				2BC9FD8E245CE731001E9F09 /* CoreDataStack.swift in Sources */,
 				2B640691245B7568003F02B8 /* AppDelegate.swift in Sources */,
 				2BC9FD83245C54A3001E9F09 /* RecipeSession.swift in Sources */,
-				2BC20EA624620DD1005FEA92 /* FavoriteTableViewCell.swift in Sources */,
 				2BC9FD8A245C6EE9001E9F09 /* String.swift in Sources */,
+				2B88C2D42462DF9E005439DD /* RecipieTableViewCell.swift in Sources */,
 				2BC9FD85245C55AF001E9F09 /* RecipSearch.swift in Sources */,
 				2BC9FD90245CE95A001E9F09 /* CoreDataManager.swift in Sources */,
 				2BC20EA42460B979005FEA92 /* RecipeDetailViewController.swift in Sources */,
@@ -656,6 +660,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 83G7A45R26;
 				INFOPLIST_FILE = Reciplease/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -674,6 +679,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 83G7A45R26;
 				INFOPLIST_FILE = Reciplease/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -17,31 +17,25 @@ struct Hit: Decodable {
 }
 
 struct Recipe: Decodable {
-    let uri: String
     let label: String
-    let image: String
-    let source: String
+    var image: String
+    let yield: Int
     let url: String
-    let yield: String
-    let calories: String
-    let totalWeight: Float
+    let calories: Float
     let ingredients: [Ingredient]
+    let ingredientLines: [String]
 }
 
 struct Ingredient: Decodable {
-    let foodId: String
-    let quantity: Float
-    let measure: [Measure]
-    let weight: Float
-    let food: [Food]
+    let text: String
 }
 
-struct Measure: Decodable {
-    let uri: String
-    let label: String
-}
+//struct RecipeRepresentable {
+//    let label: String
+//    let image: Data?
+//    let calories: String
+//    let ingredient: [String]
+//    let yield: String
+//    let data: Data?
+//}
 
-struct Food: Decodable {
-    let foodId: String
-    let label: String
-}

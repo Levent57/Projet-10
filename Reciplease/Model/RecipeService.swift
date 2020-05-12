@@ -16,23 +16,29 @@ enum RecipeError: Error {
 class RecipeService {
     
     let session: AlamoSession
-    let applicationId = "17234bca"
-    let apiKey = "7e4a9a7e6aeaad719787cc4ad4e696d3"
+    let applicationId = "94bfc6a4"
+    let apiKey = "a35e0ee4f4445ecc32176fde7f79fdc0"
     
     init(session: AlamoSession = RecipeSession()) {
         self.session = session
     }
     
-    func getData(ingredients: String, callback: @escaping (Result<RecipSearch, Error>) -> Void) {
+    func getData(ingredients: [String], callback: @escaping (Result<RecipSearch, Error>) -> Void) {
         guard let url = getURL(ingredients: ingredients) else { return }
-        session.request(url) { (responseData) in
-            guard let data = responseData.data else { callback(.failure(RecipeError.noData))
+        print(url)
+        session.request(url) { responseData in
+            guard let data = responseData.data else {
+                print("1")
+                callback(.failure(RecipeError.noData))
                 return
             }
-            guard responseData.response?.statusCode == 200 else { callback(.failure(RecipeError.incorrectResponse))
+            guard responseData.response?.statusCode == 200 else {
+                print("2")
+                callback(.failure(RecipeError.incorrectResponse))
                 return
             }
             guard let dataDecoded = try? JSONDecoder().decode(RecipSearch.self, from: data) else {
+                print("3")
                 callback(.failure(RecipeError.undecodable))
                 return
             }
@@ -41,8 +47,9 @@ class RecipeService {
     }
     
 
-        func getURL (ingredients: String) -> URL? {
-            let urlAdress = "https://api.edamam.com/search?q=\(ingredients)&app_id=\(applicationId)&app_key=\(apiKey)"
+        func getURL (ingredients: [String]) -> URL? {
+            let ingredientURL = ingredients.joined(separator: ",")
+            let urlAdress = "https://api.edamam.com/search?q=\(ingredientURL)&app_id=\(applicationId)&app_key=\(apiKey)"
             guard let urlString = urlAdress.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return nil }
             guard let url = URL(string: urlString) else { return nil }
             return url

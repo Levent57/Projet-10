@@ -10,7 +10,6 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
-    
     @IBOutlet weak var ingredientTextField: UITextField!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
@@ -21,54 +20,85 @@ class SearchViewController: UIViewController {
     let recipeService = RecipeService()
     var ingredients = [String]()
     var recipSearch = [Hit]()
-    
+    var recipes: RecipSearch?
+//    let segueToRecipeList = "SegueToRecipeList"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator.isHidden = true
         ingredientTextField.delegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
     
-    
-    @IBAction func searchButtonPressed(_ sender: Any) {
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SegueToRecipeList" {
+            guard let resultVC = segue.destination as? RecipeListViewController else { return }
+            resultVC.recipe = recipes
+        }
     }
     
+    func addIngredients() {
+        guard let ingredient = ingredientTextField?.text, !ingredient.isBlank else { return showAlert(title: "No Ingredients", message: "Please add your ingredients") }
+           ingredients.append(ingredient)
+           ingredientTextField.text = ""
+           tableView.reloadData()
+       }
+    
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
+    func getRecipe() {
+        if !ingredients.isEmpty {
+            activityIndicator.isHidden = false
+            recipeService.getData(ingredients: ingredients) { result in
+                self.activityIndicator.isHidden = true
+                switch result {
+                case .success(let data):
+                    self.recipes = data
+                    self.performSegue(withIdentifier: "SegueToRecipeList", sender: nil)
+                case .failure(_):
+                    self.showAlert(title: "No Data", message: "No Data")
+                }
+            }
+        } else {
+            showAlert(title: "No Ingredients", message: "Please add your ingredients")
+        }
+    }
+    
+    @IBAction func searchButtonPressed(_ sender: Any) {
+        getRecipe()
+    }
+        
     @IBAction func addButtonPressed(_ sender: Any) {
         addIngredients()
-        tableView.reloadData()
-        print(ingredients.count)
     }
     
     @IBAction func clearButtonPressed(_ sender: Any) {
         ingredients.removeAll()
         tableView.reloadData()
     }
-    
-    
-    func addIngredients() {
-        guard let ingredient = ingredientTextField?.text, !ingredient.isBlank else { return }
-        ingredients.append(ingredient)
-        tableView.reloadData()
-    }
-    
-    
-    
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ingredients.count
+                return ingredients.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
+                let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
         cell.textLabel?.text = ingredients[indexPath.row]
-        return cell
+                return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -86,11 +116,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         label.textColor = .black
         return label
     }
-    
+
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return ingredients.isEmpty ? 200 : 0
     }
-    
 }
 
 extension SearchViewController: UITextFieldDelegate {

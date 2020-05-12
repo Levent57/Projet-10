@@ -25,12 +25,12 @@ class CoreDataManager {
         self.managedObjectContext = coreDataStack.mainContext
     }
     
-    func creatRecipe(title: String, ingredients: String, likes: Int16, totalTime: Int16, image: String, url: String) {
+    func creatRecipe(title: String, ingredients: String, yield: Int16, calories: Int16, image: String, url: String) {
         let recipe = RecipeElements(context: managedObjectContext)
         recipe.title = title
-        recipe.ingredients = ingredients
-        recipe.likes = likes
-        recipe.totalTime = totalTime
+        recipe.ingredients = [ingredients]
+        recipe.calories = calories
+        recipe.yield = yield
         recipe.image = image
         recipe.url = url
         coreDataStack.saveContext()
@@ -39,6 +39,15 @@ class CoreDataManager {
     func deleteAllRecipe() {
         recipeElements.forEach { managedObjectContext.delete($0) }
         coreDataStack.saveContext()
+    }
+    
+    func getRecipe(_ name: String?) {
+        if let n = name, n != "" {
+            let newTask = RecipeElements(context: managedObjectContext)
+            newTask.title = n
+            managedObjectContext.insert(newTask)
+            coreDataStack.saveContext()
+        }
     }
     
     
