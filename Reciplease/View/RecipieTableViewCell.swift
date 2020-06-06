@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class RecipieTableViewCell: UITableViewCell {
 
@@ -15,8 +16,7 @@ class RecipieTableViewCell: UITableViewCell {
     @IBOutlet weak var ingredientsLabel: UILabel!
     @IBOutlet weak var YieldLabel: UILabel!
     @IBOutlet weak var caloriesLabel: UILabel!
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -27,8 +27,20 @@ class RecipieTableViewCell: UITableViewCell {
             ingredientsLabel.text = recipes?.recipe.ingredientLines.joined(separator: ", ")
             YieldLabel.text = String(recipes?.recipe.yield ?? 0)
             caloriesLabel.text = String(recipes?.recipe.calories ?? 0)
-            recipeImageView.image = UIImage(named: (recipes?.recipe.image) ?? "Diabetes-Superfoods-min.jpg")
+            recipeImageView.sd_setImage(with: URL(string: recipes?.recipe.image ?? "Diabetes-Superfoods-min"), completed: nil)
         }
     }
 
+    var favoriteRecipes: RecipeEntity? {
+        didSet {
+            titleLabel.text = favoriteRecipes?.title
+            ingredientsLabel.text = favoriteRecipes?.ingredients?.joined(separator: ", ") ?? ""
+            YieldLabel.text = favoriteRecipes?.yield
+            caloriesLabel.text = favoriteRecipes?.calories
+            if let data = favoriteRecipes?.image {
+                recipeImageView.image = UIImage(data: data)
+            }
+
+        }
+    }
 }

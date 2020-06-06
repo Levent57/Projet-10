@@ -9,16 +9,16 @@
 import Foundation
 import CoreData
 
-class CoreDataStack {
+open class CoreDataStack {
     
-    let modelName: String
+    private let modelName: String
     
-    init(modelName: String) {
+    public init(modelName: String) {
         self.modelName = modelName
     }
     
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "RecipeElements")
+    public lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: modelName)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -27,11 +27,11 @@ class CoreDataStack {
         return container
     }()
     
-    lazy var mainContext: NSManagedObjectContext = {
+    public lazy var mainContext: NSManagedObjectContext = {
         return persistentContainer.viewContext
     }()
     
-    func saveContext() {
+    public func saveContext() {
         guard mainContext.hasChanges else { return }
         do {
             try mainContext.save()

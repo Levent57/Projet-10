@@ -7,6 +7,7 @@ target 'Reciplease' do
 
   # Pods for Reciplease
 pod 'Alamofire', '4.9'
+pod 'SDWebImage', '~> 5.0'
   target 'RecipleaseTests' do
     inherit! :search_paths
     # Pods for testing

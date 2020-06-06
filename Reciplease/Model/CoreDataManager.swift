@@ -14,8 +14,8 @@ class CoreDataManager {
     let coreDataStack: CoreDataStack
     let managedObjectContext: NSManagedObjectContext
     
-    var recipeElements: [RecipeElements] {
-        let request: NSFetchRequest<RecipeElements> = RecipeElements.fetchRequest()
+    var recipeElements: [RecipeEntity] {
+        let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         guard let tasks = try? managedObjectContext.fetch(request) else { return [] }
         return tasks
     }
@@ -25,10 +25,10 @@ class CoreDataManager {
         self.managedObjectContext = coreDataStack.mainContext
     }
     
-    func creatRecipe(title: String, ingredients: String, yield: Int16, calories: Int16, image: String, url: String) {
-        let recipe = RecipeElements(context: managedObjectContext)
+    func creatRecipe(title: String, ingredients: [String], yield: String, calories: String, image: Data?, url: String) {
+        let recipe = RecipeEntity(context: managedObjectContext)
         recipe.title = title
-        recipe.ingredients = [ingredients]
+        recipe.ingredients = ingredients
         recipe.calories = calories
         recipe.yield = yield
         recipe.image = image
@@ -41,15 +41,23 @@ class CoreDataManager {
         coreDataStack.saveContext()
     }
     
-    func getRecipe(_ name: String?) {
-        if let n = name, n != "" {
-            let newTask = RecipeElements(context: managedObjectContext)
-            newTask.title = n
-            managedObjectContext.insert(newTask)
-            coreDataStack.saveContext()
+    func checkIsFavorite(title: String) -> Bool {
+        let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "title == %@", title)
+        guard let recipies = try? managedObjectContext.fetch(request) else { return false}
+        if recipies.isEmpty {
+            return false
         }
+        return true
     }
     
-    
-    
-}
+    func deleteFromFavorite(title: String) {
+        let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "title == %@", title)
+        if let recipies = try? managedObjectContext.fetch(request) {
+            recipies.forEach { managedObjectContext.delete($0) }
+            }
+        coreDataStack.saveContext()
+        }
+        
+    }

@@ -13,12 +13,12 @@ struct RecipSearch: Decodable {
 }
 
 struct Hit: Decodable {
-    let recipe: Recipe
+    var recipe: Recipe
 }
 
 struct Recipe: Decodable {
     let label: String
-    var image: String
+    var image: String?
     let yield: Int
     let url: String
     let calories: Float
@@ -30,12 +30,11 @@ struct Ingredient: Decodable {
     let text: String
 }
 
-//struct RecipeRepresentable {
-//    let label: String
-//    let image: Data?
-//    let calories: String
-//    let ingredient: [String]
-//    let yield: String
-//    let data: Data?
-//}
-
+struct RecipieDetail {
+    let label: String
+    var image: Data?
+    let yield: String
+    let url: String
+    let calories: String
+    let ingredients: [String]
+}

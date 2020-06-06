@@ -45,7 +45,6 @@ class RecipeService {
             callback(.success(dataDecoded))
         }
     }
-    
 
         func getURL (ingredients: [String]) -> URL? {
             let ingredientURL = ingredients.joined(separator: ",")

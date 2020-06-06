@@ -11,10 +11,9 @@ import UIKit
 class RecipeListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
-    
-    var recipSearch: Hit?
-    var recipe: RecipSearch?
+
+    var recipes: RecipSearch?
+    var recipe: Recipe?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -28,16 +27,26 @@ class RecipeListViewController: UIViewController {
         let nib = UINib(nibName: "RecipieTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "RecipeCell")
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SegueToDescription" {
+            guard let resultVC = segue.destination as? RecipeDetailViewController else { return }
+            guard let recipe = recipe else { return }
+            let recipieDetail = RecipieDetail(label: recipe.label, image: recipe.image?.data, yield: String(recipe.yield), url: recipe.url, calories: String(recipe.calories), ingredients: recipe.ingredientLines)
+            resultVC.recipeDetail = recipieDetail
+            resultVC.isComeFromFavorite = false
+        }
+    }
 }
 
 extension RecipeListViewController: UITableViewDelegate ,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recipe?.hits.count ?? 0
+        return recipes?.hits.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as? RecipieTableViewCell else { return UITableViewCell() }
-        cell.recipes = recipe?.hits[indexPath.row]
+        cell.recipes = recipes?.hits[indexPath.row]
         return cell
     }
     
@@ -46,9 +55,9 @@ extension RecipeListViewController: UITableViewDelegate ,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        recipSearch = recipe?.hits[indexPath.row]
-        
-        performSegue(withIdentifier: "SegueToDescription", sender: nil)
+        guard let recipes = recipes else { return }
+        recipe = recipes.hits[indexPath.row].recipe
+        performSegue(withIdentifier: "SegueToDescription", sender: recipe)
     }
 
 

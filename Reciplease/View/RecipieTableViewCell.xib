@@ -31,13 +31,13 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TItle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTi-1h-fhb">
                         <rect key="frame" x="10" y="72" width="300" height="21"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                        <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pOT-J0-hOT">
-                        <rect key="frame" x="200" y="5" width="110" height="60"/>
+                        <rect key="frame" x="220" y="5" width="90" height="60"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YIeld" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOY-gw-jm0">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YIeld" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOY-gw-jm0">
                                 <rect key="frame" x="5" y="5" width="40" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="kqY-8I-2fY"/>
@@ -47,7 +47,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNg-AI-bgA">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calories" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNg-AI-bgA">
                                 <rect key="frame" x="5" y="35" width="45" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Vhz-wC-6h1"/>
@@ -61,24 +61,23 @@
                                 <rect key="frame" x="148" y="36" width="60" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scissors" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cuA-Ch-3hD">
-                                <rect key="frame" x="75" y="4" width="25" height="23.5"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fork" translatesAutoresizingMaskIntoConstraints="NO" id="cuA-Ch-3hD">
+                                <rect key="frame" x="55" y="3" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="3Ja-XK-LvH"/>
                                     <constraint firstAttribute="width" constant="25" id="klj-9y-X9d"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flame" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="300-c2-dA5">
-                                <rect key="frame" x="75" y="31" width="25" height="25.5"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fire" translatesAutoresizingMaskIntoConstraints="NO" id="300-c2-dA5">
+                                <rect key="frame" x="55" y="32" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="CCw-2U-1b1"/>
                                     <constraint firstAttribute="height" constant="25" id="Kqk-0j-XEe"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="110" id="ETS-wN-Tvy"/>
+                            <constraint firstAttribute="width" constant="90" id="ETS-wN-Tvy"/>
                             <constraint firstAttribute="bottom" secondItem="300-c2-dA5" secondAttribute="bottom" constant="3" id="P02-8f-FqU"/>
                             <constraint firstAttribute="bottom" secondItem="yNg-AI-bgA" secondAttribute="bottom" constant="5" id="YbT-7v-0se"/>
                             <constraint firstItem="yNg-AI-bgA" firstAttribute="leading" secondItem="pOT-J0-hOT" secondAttribute="leading" constant="5" id="ZnH-Z6-UuM"/>
@@ -103,7 +102,6 @@
                     <constraint firstAttribute="bottom" secondItem="LU3-SX-wlE" secondAttribute="bottom" id="YWv-GD-KJ1"/>
                     <constraint firstAttribute="trailing" secondItem="pOT-J0-hOT" secondAttribute="trailing" constant="10" id="bVY-Ao-rq6"/>
                     <constraint firstAttribute="trailing" secondItem="LU3-SX-wlE" secondAttribute="trailing" id="bxY-Mf-cyQ"/>
-                    <constraint firstItem="WTi-1h-fhb" firstAttribute="height" secondItem="jCs-0l-GtQ" secondAttribute="height" multiplier="1.05" id="cS6-Tw-2Qf"/>
                     <constraint firstItem="jCs-0l-GtQ" firstAttribute="top" secondItem="WTi-1h-fhb" secondAttribute="bottom" constant="5" id="kaD-VE-LeO"/>
                 </constraints>
             </tableViewCellContentView>
@@ -120,7 +118,7 @@
     </objects>
     <resources>
         <image name="Diabetes-Superfoods-min" width="900" height="798"/>
-        <image name="flame" catalog="system" width="109" height="128"/>
-        <image name="scissors" catalog="system" width="128" height="92"/>
+        <image name="fire" width="512" height="512"/>
+        <image name="fork" width="512" height="512"/>
     </resources>
 </document>

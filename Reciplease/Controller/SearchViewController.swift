@@ -19,9 +19,7 @@ class SearchViewController: UIViewController {
     
     let recipeService = RecipeService()
     var ingredients = [String]()
-    var recipSearch = [Hit]()
     var recipes: RecipSearch?
-//    let segueToRecipeList = "SegueToRecipeList"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,24 +36,16 @@ class SearchViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SegueToRecipeList" {
             guard let resultVC = segue.destination as? RecipeListViewController else { return }
-            resultVC.recipe = recipes
+            resultVC.recipes = recipes
         }
     }
     
     func addIngredients() {
-        guard let ingredient = ingredientTextField?.text, !ingredient.isBlank else { return showAlert(title: "No Ingredients", message: "Please add your ingredients") }
+        guard let ingredient = ingredientTextField?.text, !ingredient.isBlank else { return showErrorPopup(title: "Empty", message: "Please add your ingredients") }
            ingredients.append(ingredient)
            ingredientTextField.text = ""
            tableView.reloadData()
        }
-    
-    func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
-    }
-    
     
     func getRecipe() {
         if !ingredients.isEmpty {
@@ -67,11 +57,11 @@ class SearchViewController: UIViewController {
                     self.recipes = data
                     self.performSegue(withIdentifier: "SegueToRecipeList", sender: nil)
                 case .failure(_):
-                    self.showAlert(title: "No Data", message: "No Data")
+                    self.showErrorPopup(title: "No data", message: "No data")
                 }
             }
         } else {
-            showAlert(title: "No Ingredients", message: "Please add your ingredients")
+            showErrorPopup(title: "Empty", message: "Please add your ingredients")
         }
     }
     
@@ -98,7 +88,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
         cell.textLabel?.text = ingredients[indexPath.row]
-                return cell
+        return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -111,7 +101,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let label = UILabel()
         label.text = "Add some ingredients in the list"
-        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        label.font = UIFont(name:"Noteworthy", size: 20)
         label.textAlignment = .center
         label.textColor = .black
         return label
