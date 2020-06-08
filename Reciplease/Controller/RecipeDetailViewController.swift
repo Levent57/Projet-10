@@ -18,7 +18,7 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var detailYieldLabel: UILabel!
     @IBOutlet weak var detailCaloriesLabel: UILabel!
     
-    var coreDataManager: CoreDataManager?
+    private var coreDataManager: CoreDataManager?
     var recipeDetail: RecipieDetail?
     var isComeFromFavorite: Bool = false
     
@@ -36,7 +36,7 @@ class RecipeDetailViewController: UIViewController {
         updateFavoriteIcon()
     }
 
-    func viewSetting() {
+    private func viewSetting() {
         guard let recipeDetail = recipeDetail else { return }
         detailTitleLabel.text = recipeDetail.label
         detailYieldLabel.text = recipeDetail.yield
@@ -44,7 +44,7 @@ class RecipeDetailViewController: UIViewController {
         detailImageView.image = recipeDetail.image != nil ? UIImage(data: recipeDetail.image!) : UIImage(named: "")
     }
 
-    func updateFavoriteIcon() {
+    private func updateFavoriteIcon() {
         guard let coreDataManager = coreDataManager else { return }
         if coreDataManager.checkIsFavorite(title: recipeDetail?.label ?? "") {
             favoriteButton.tintColor = .orange
@@ -53,7 +53,7 @@ class RecipeDetailViewController: UIViewController {
         }
     }
     
-    func addFavorite() {
+    private func addFavorite() {
         guard let recipieDetail = recipeDetail else { return }
         let name = recipieDetail.label
         let ingredients = recipieDetail.ingredients

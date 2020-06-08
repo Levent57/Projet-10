@@ -35,6 +35,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3jG-0i-xTS">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="0.70634967599999998" blue="0.087080626339999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
                         </textAttributes>
@@ -520,7 +521,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="1B7-UF-VVz"/>
+        <segue reference="rQ2-pV-KnR"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Diabetes-Superfoods-min" width="900" height="798"/>

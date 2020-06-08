@@ -14,7 +14,6 @@ final class CoreDataManagerTest: XCTestCase {
     var coreDataStack: MockCoreDataStack!
     var coreDataManager: CoreDataManager!
     var data: Data?
-    var recipe: Recipe?
     
     override func setUp() {
         super.setUp()

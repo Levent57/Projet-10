@@ -15,9 +15,9 @@ enum RecipeError: Error {
 
 class RecipeService {
     
-    let session: AlamoSession
-    let applicationId = "94bfc6a4"
-    let apiKey = "a35e0ee4f4445ecc32176fde7f79fdc0"
+    private let session: AlamoSession
+    private let applicationId = "94bfc6a4"
+    private let apiKey = "a35e0ee4f4445ecc32176fde7f79fdc0"
     
     init(session: AlamoSession = RecipeSession()) {
         self.session = session
@@ -25,20 +25,16 @@ class RecipeService {
     
     func getData(ingredients: [String], callback: @escaping (Result<RecipSearch, Error>) -> Void) {
         guard let url = getURL(ingredients: ingredients) else { return }
-        print(url)
         session.request(url) { responseData in
             guard let data = responseData.data else {
-                print("1")
                 callback(.failure(RecipeError.noData))
                 return
             }
             guard responseData.response?.statusCode == 200 else {
-                print("2")
                 callback(.failure(RecipeError.incorrectResponse))
                 return
             }
             guard let dataDecoded = try? JSONDecoder().decode(RecipSearch.self, from: data) else {
-                print("3")
                 callback(.failure(RecipeError.undecodable))
                 return
             }

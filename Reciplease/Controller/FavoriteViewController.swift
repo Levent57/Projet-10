@@ -12,8 +12,8 @@ class FavoriteViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView! { didSet{tableView.tableFooterView = UIView() } }
     
-    var coreDataManager: CoreDataManager?
-    var recipeDetail: RecipieDetail?
+    private var coreDataManager: CoreDataManager?
+    private var recipeDetail: RecipieDetail?
 
     override func viewDidLoad() {
         super.viewDidLoad()

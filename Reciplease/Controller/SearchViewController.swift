@@ -17,9 +17,9 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchButton: UIButton!
     
-    let recipeService = RecipeService()
-    var ingredients = [String]()
-    var recipes: RecipSearch?
+    private let recipeService = RecipeService()
+    private var ingredients = [String]()
+    private var recipes: RecipSearch?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,14 +40,14 @@ class SearchViewController: UIViewController {
         }
     }
     
-    func addIngredients() {
+    private func addIngredients() {
         guard let ingredient = ingredientTextField?.text, !ingredient.isBlank else { return showErrorPopup(title: "Empty", message: "Please add your ingredients") }
            ingredients.append(ingredient)
            ingredientTextField.text = ""
            tableView.reloadData()
        }
     
-    func getRecipe() {
+    private func getRecipe() {
         if !ingredients.isEmpty {
             activityIndicator.isHidden = false
             recipeService.getData(ingredients: ingredients) { result in

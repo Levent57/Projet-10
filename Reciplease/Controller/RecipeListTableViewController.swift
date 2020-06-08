@@ -13,7 +13,7 @@ class RecipeListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var recipes: RecipSearch?
-    var recipe: Recipe?
+    private var recipe: Recipe?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

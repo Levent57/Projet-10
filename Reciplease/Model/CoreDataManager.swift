@@ -11,8 +11,8 @@ import CoreData
 
 class CoreDataManager {
     
-    let coreDataStack: CoreDataStack
-    let managedObjectContext: NSManagedObjectContext
+    private let coreDataStack: CoreDataStack
+    private let managedObjectContext: NSManagedObjectContext
     
     var recipeElements: [RecipeEntity] {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
