@@ -10,17 +10,21 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
-    @IBOutlet weak var ingredientTextField: UITextField!
+    // MARK: - Outlets
+    
+    @IBOutlet private weak var ingredientTextField: UITextField!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var tableView: UITableView! { didSet{tableView.tableFooterView = UIView() } }
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchButton: UIButton!
     
+    //MARK: Variables
     private let recipeService = RecipeService()
     private var ingredients = [String]()
     private var recipes: RecipSearch?
     
+    //MARK: View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.isHidden = true
@@ -29,10 +33,12 @@ class SearchViewController: UIViewController {
         tableView.dataSource = self
     }
     
+    //Hidden Keyborard
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
     
+    //Segue to RecipeListViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SegueToRecipeList" {
             guard let resultVC = segue.destination as? RecipeListViewController else { return }
@@ -40,12 +46,13 @@ class SearchViewController: UIViewController {
         }
     }
     
+    //MARK: Functions
     private func addIngredients() {
         guard let ingredient = ingredientTextField?.text, !ingredient.isBlank else { return showErrorPopup(title: "Empty", message: "Please add your ingredients") }
-           ingredients.append(ingredient)
-           ingredientTextField.text = ""
-           tableView.reloadData()
-       }
+        ingredients.append(ingredient)
+        ingredientTextField.text = ""
+        tableView.reloadData()
+    }
     
     private func getRecipe() {
         if !ingredients.isEmpty {
@@ -65,10 +72,11 @@ class SearchViewController: UIViewController {
         }
     }
     
-    @IBAction func searchButtonPressed(_ sender: Any) {
+    //MARK: Actions
+    @IBAction private func searchButtonPressed(_ sender: Any) {
         getRecipe()
     }
-        
+    
     @IBAction func addButtonPressed(_ sender: Any) {
         addIngredients()
     }
@@ -79,14 +87,15 @@ class SearchViewController: UIViewController {
     }
 }
 
+//MARK: TableView Extension
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-                return ingredients.count
+        return ingredients.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
         cell.textLabel?.text = ingredients[indexPath.row]
         return cell
     }
@@ -106,12 +115,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         label.textColor = .black
         return label
     }
-
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return ingredients.isEmpty ? 200 : 0
     }
 }
 
+//MARK: TextField Extension
 extension SearchViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

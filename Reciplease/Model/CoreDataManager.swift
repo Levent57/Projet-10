@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class CoreDataManager {
+final class CoreDataManager {
     
     private let coreDataStack: CoreDataStack
     private let managedObjectContext: NSManagedObjectContext
@@ -25,6 +25,7 @@ class CoreDataManager {
         self.managedObjectContext = coreDataStack.mainContext
     }
     
+    /// blabla 
     func creatRecipe(title: String, ingredients: [String], yield: String, calories: String, image: Data?, url: String) {
         let recipe = RecipeEntity(context: managedObjectContext)
         recipe.title = title

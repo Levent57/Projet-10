@@ -10,6 +10,7 @@ import UIKit
 
 class RecipeDetailViewController: UIViewController {
     
+    //MARK: Outlets
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var detailTitleLabel: UILabel!
@@ -18,10 +19,12 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var detailYieldLabel: UILabel!
     @IBOutlet weak var detailCaloriesLabel: UILabel!
     
+    //MARK: Variables
     private var coreDataManager: CoreDataManager?
     var recipeDetail: RecipieDetail?
     var isComeFromFavorite: Bool = false
     
+    //MARK: View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -36,6 +39,7 @@ class RecipeDetailViewController: UIViewController {
         updateFavoriteIcon()
     }
 
+    //MARK: Functions
     private func viewSetting() {
         guard let recipeDetail = recipeDetail else { return }
         detailTitleLabel.text = recipeDetail.label
@@ -64,6 +68,7 @@ class RecipeDetailViewController: UIViewController {
         coreDataManager?.creatRecipe(title: name, ingredients: ingredients, yield: yield, calories: calories, image: image, url: url)
     }
  
+    //MARK: Actions
     @IBAction func getDirectionButton(_ sender: UIButton) {
         guard let url = URL(string: recipeDetail?.url ?? "") else { return }
         UIApplication.shared.open(url)
@@ -84,6 +89,7 @@ class RecipeDetailViewController: UIViewController {
     } 
 }
 
+//MARK: TableViewExtension
 extension RecipeDetailViewController: UITableViewDelegate ,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipeDetail?.ingredients.count ?? 0

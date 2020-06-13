@@ -10,11 +10,14 @@ import UIKit
 
 class FavoriteViewController: UIViewController {
     
+    //MARK: Outlets
     @IBOutlet weak var tableView: UITableView! { didSet{tableView.tableFooterView = UIView() } }
     
+    //MARK: Variables
     private var coreDataManager: CoreDataManager?
     private var recipeDetail: RecipieDetail?
 
+    //MARK: View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -31,6 +34,7 @@ class FavoriteViewController: UIViewController {
         tableView.reloadData()
     }
     
+    //Segue to RecipeDetailViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let vc = segue.destination as? RecipeDetailViewController else { return }
         vc.recipeDetail = recipeDetail
@@ -38,6 +42,7 @@ class FavoriteViewController: UIViewController {
     }
 }
 
+//MARK: TableViewExtension
 extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return coreDataManager?.recipeElements.count ?? 0
@@ -50,6 +55,7 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    //Show message when tableView is empty
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let label = UILabel()
         label.text = "You have no favorite recipes."
