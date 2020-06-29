@@ -10,14 +10,17 @@ import UIKit
 
 class FavoriteViewController: UIViewController {
     
-    //MARK: Outlets
+    //MARK: - Outlets
+    
     @IBOutlet weak var tableView: UITableView! { didSet{tableView.tableFooterView = UIView() } }
     
-    //MARK: Variables
+    //MARK: - Variables
+    
     private var coreDataManager: CoreDataManager?
     private var recipeDetail: RecipieDetail?
 
-    //MARK: View life cycle
+    //MARK: - View life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -42,7 +45,8 @@ class FavoriteViewController: UIViewController {
     }
 }
 
-//MARK: TableViewExtension
+//MARK: - TableViewExtension
+
 extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return coreDataManager?.recipeElements.count ?? 0

@@ -19,12 +19,14 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchButton: UIButton!
     
-    //MARK: Variables
+    //MARK: - Variables
+    
     private let recipeService = RecipeService()
     private var ingredients = [String]()
     private var recipes: RecipSearch?
     
-    //MARK: View life cycle
+    //MARK: - View life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.isHidden = true
@@ -46,7 +48,8 @@ class SearchViewController: UIViewController {
         }
     }
     
-    //MARK: Functions
+    //MARK: - Functions
+    
     private func addIngredients() {
         guard let ingredient = ingredientTextField?.text, !ingredient.isBlank else { return showErrorPopup(title: "Empty", message: "Please add your ingredients") }
         ingredients.append(ingredient)
@@ -64,7 +67,7 @@ class SearchViewController: UIViewController {
                     self.recipes = data
                     self.performSegue(withIdentifier: "SegueToRecipeList", sender: nil)
                 case .failure(_):
-                    self.showErrorPopup(title: "No data", message: "No data")
+                    self.showErrorPopup(title: "Data error", message: "No data")
                 }
             }
         } else {
@@ -72,7 +75,8 @@ class SearchViewController: UIViewController {
         }
     }
     
-    //MARK: Actions
+    //MARK: - Actions
+    
     @IBAction private func searchButtonPressed(_ sender: Any) {
         getRecipe()
     }
@@ -87,7 +91,8 @@ class SearchViewController: UIViewController {
     }
 }
 
-//MARK: TableView Extension
+//MARK: - TableView Extension
+
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -121,7 +126,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-//MARK: TextField Extension
+//MARK: - TextField Extension
+
 extension SearchViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

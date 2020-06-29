@@ -10,14 +10,17 @@ import UIKit
 
 class RecipeListViewController: UIViewController {
     
-    //MARK: OUtlets
+    //MARK: - Outlets
+    
     @IBOutlet weak var tableView: UITableView!
 
-    //MARK: Variables
+    //MARK: - Variables
+    
     var recipes: RecipSearch?
     private var recipe: Recipe?
     
-    //MARK: View life cycle
+    //MARK: - View life cycle
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
@@ -42,7 +45,8 @@ class RecipeListViewController: UIViewController {
     }
 }
 
-//MARK: TableView extension
+//MARK: - TableView extension
+
 extension RecipeListViewController: UITableViewDelegate ,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes?.hits.count ?? 0

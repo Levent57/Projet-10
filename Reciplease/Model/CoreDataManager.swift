@@ -11,6 +11,8 @@ import CoreData
 
 final class CoreDataManager {
     
+    //MARK: - Variables
+    
     private let coreDataStack: CoreDataStack
     private let managedObjectContext: NSManagedObjectContext
     
@@ -25,7 +27,7 @@ final class CoreDataManager {
         self.managedObjectContext = coreDataStack.mainContext
     }
     
-    /// blabla 
+    ///Creat recipe and add to CoreData
     func creatRecipe(title: String, ingredients: [String], yield: String, calories: String, image: Data?, url: String) {
         let recipe = RecipeEntity(context: managedObjectContext)
         recipe.title = title
@@ -37,11 +39,13 @@ final class CoreDataManager {
         coreDataStack.saveContext()
     }
     
+    ///Delete all recipe
     func deleteAllRecipe() {
         recipeElements.forEach { managedObjectContext.delete($0) }
         coreDataStack.saveContext()
     }
     
+    ///Check if recipe is present in CoreData
     func checkIsFavorite(title: String) -> Bool {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.predicate = NSPredicate(format: "title == %@", title)
@@ -52,6 +56,7 @@ final class CoreDataManager {
         return true
     }
     
+    ///Delete recipe from coreData
     func deleteFromFavorite(title: String) {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.predicate = NSPredicate(format: "title == %@", title)
